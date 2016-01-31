@@ -62,7 +62,7 @@
 	  loadPlayers: function loadPlayers() {
 	    var _this = this;
 
-	    this.serverRequest = $.getJSON('https://dl.dropboxusercontent.com/s/i4d8i0jwd50hf1i/devnaspoints.json?dl=0', function (result) {
+	    this.serverRequest = $.getJSON('https://dl.dropboxusercontent.com/s/hqjcdirwmriymwa/fechnaspoints.json?dl=0', function (result) {
 	      var fechnasPoints = result;
 	      var origin = {};
 	      origin.players = [].concat(_toConsumableArray(fechnasPoints.players));
