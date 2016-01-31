@@ -1,0 +1,108 @@
+html {
+  //box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #181818;
+  font-family: 'Finger Paint', cursive;
+}
+
+.headline {
+  text-align: center;
+  color: #ed8888;
+}
+
+.players {
+  width: 340px;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+
+.player {
+  height: 56px;
+  color: #fff;
+  text-shadow: 1px 1px 6px #000;
+  position: absolute;
+  transition: all 1.5s cubic-bezier(.87,-.41,.19,1.44);
+  border: solid 1px black;
+}
+
+.player--deathknight {
+  background-color: #C41F3B;
+}
+
+.player--druid {
+  background-color: #FF7D0A;
+}
+
+.player--hunter {
+  background-color: #ABD473;
+}
+
+.player--mage {
+  background-color: #69CCF0;
+}
+
+.player--monk {
+  background-color: #00FF96;
+}
+
+.player--paladin {
+  background-color: #F58CBA;
+}
+
+.player--priest {
+  background-color: #FFFFFF;
+}
+
+.player--rogue {
+  background-color: #FFF569;
+}
+
+.player--shaman {
+  background-color: #0070DE;
+}
+
+.player--warlock {
+  background-color: #9482C9;
+}
+
+.player--warrior {
+  background-color: #C79C6E;
+}
+
+.player__thumbnail {
+  display: inline-block;
+  float: left;
+  margin-top: 4px;
+  margin-left: 3px;
+  width: 46px;
+  height: 46px;
+  border: solid 1px black;
+}
+
+.player__info {
+  padding-top: 14px;
+  width: 270px;
+  height: 100%;
+  display: inline-block;
+  font-size: 20px;
+}
+.player__info__name {
+  width: 190px;
+  display: inline-block;
+  float: left;
+  text-align: right;
+  padding-right: 4px;
+  margin-bottom: 0px;
+}
+
+.player__info__score {
+  width: 70px;
+  display: inline-block;
+  padding-left: 4px;
+}
