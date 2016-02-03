@@ -305,8 +305,9 @@
 	  update: function update() {
 	    var editName = ReactDOM.findDOMNode(this.refs.editName).value;
 	    var editScore = ReactDOM.findDOMNode(this.refs.editScore).value;
+	    var editThumbnail = ReactDOM.findDOMNode(this.refs.editThumbnail).value;
 
-	    if (this.props.player.name !== editName || this.props.player.score !== editScore) {
+	    if (this.props.player.name !== editName || this.props.player.score !== editScore || this.props.player.thumbnail !== editThumbnail) {
 	      var playerRef = new Firebase('https://blistering-inferno-497.firebaseio.com/players/' + this.props.player['.key']);
 	      if (this.props.player.name !== editName) {
 	        // update
@@ -316,6 +317,11 @@
 	      if (this.props.player.score !== editScore) {
 	        // update
 	        playerRef.update({ score: editScore });
+	      }
+
+	      if (this.props.player.thumbnail !== editThumbnail) {
+	        // update
+	        playerRef.update({ thumbnail: editThumbnail });
 	      }
 	    }
 	  },
@@ -332,6 +338,7 @@
 	        className: 'player__thumbnail',
 	        src: thumbnail
 	      }),
+	      this.props.editing ? React.createElement('input', { type: 'text', className: 'player__input player__input--thumbnail', defaultValue: thumbnail, ref: 'editThumbnail' }) : '',
 	      React.createElement(
 	        'div',
 	        { className: 'player__info' },
@@ -31252,7 +31259,7 @@
 
 
 	// module
-	exports.push([module.id, "html {\r\n  box-sizing: border-box;\r\n}\r\n*, *:before, *:after {\r\n  box-sizing: inherit;\r\n}\r\n\r\nbody {\r\n  background-color: #181818;\r\n  color: #fff;\r\n  font-family: 'Finger Paint', cursive;\r\n}\r\n\r\n.admin {\r\n  height: 260px;\r\n  width: 321px;\r\n  background-color: #505050;\r\n  margin: 0 auto;\r\n  border: solid 1px black;\r\n  text-align: center;\r\n  padding-bottom: 20px;\r\n  transition: all 0.5s;\r\n  overflow: hidden;\r\n}\r\n\r\n.admin--enter {\r\n  height: 0;\r\n  padding: 0;\r\n  border: 0;\r\n}\r\n\r\n.add-player__input {\r\n  color: #000;\r\n  width: 200px;\r\n}\r\n\r\n.add-player__btn {\r\n  color: #000;\r\n  display: block;\r\n  margin: 0 auto;\r\n  width: 200px;\r\n}\r\n\r\n.headline {\r\n  text-align: center;\r\n  color: #ed8888;\r\n  margin-top: 0;\r\n  margin-bottom: 4px;\r\n}\r\n\r\n.edit__btn {\r\n  display: block;\r\n  color: #000;\r\n  width: 200px;\r\n  margin: 10px auto 0 auto;\r\n}\r\n\r\n.login {\r\n  margin-top: 10px;\r\n  text-align: center;\r\n}\r\n\r\n.login__btn {\r\n  cursor: pointer;\r\n}\r\n\r\n.players {\r\n  width: 321px;\r\n  display: block;\r\n  position: relative;\r\n  margin: 0 auto;\r\n}\r\n\r\n.player {\r\n  height: 56px;\r\n  color: #fff;\r\n  text-shadow: 1px 1px 6px #000;\r\n  position: absolute;\r\n  transition: all 1.5s cubic-bezier(.87,-.41,.19,1.44);\r\n  border: solid 1px black;\r\n}\r\n\r\n.player--deathknight {\r\n  background-color: #C41F3B;\r\n}\r\n\r\n.player--druid {\r\n  background-color: #FF7D0A;\r\n}\r\n\r\n.player--hunter {\r\n  background-color: #ABD473;\r\n}\r\n\r\n.player--mage {\r\n  background-color: #69CCF0;\r\n}\r\n\r\n.player--monk {\r\n  background-color: #00FF96;\r\n}\r\n\r\n.player--paladin {\r\n  background-color: #F58CBA;\r\n}\r\n\r\n.player--priest {\r\n  color: #141414;\r\n  background-color: #FFFFFF;\r\n  text-shadow: 0 0 0;\r\n}\r\n\r\n.player--rogue {\r\n  background-color: #FFF569;\r\n}\r\n\r\n.player--shaman {\r\n  background-color: #0070DE;\r\n}\r\n\r\n.player--warlock {\r\n  background-color: #9482C9;\r\n}\r\n\r\n.player--warrior {\r\n  background-color: #C79C6E;\r\n}\r\n\r\n.player__thumbnail {\r\n  display: inline-block;\r\n  float: left;\r\n  margin-top: 4px;\r\n  margin-left: 3px;\r\n  width: 46px;\r\n  height: 46px;\r\n  border: solid 1px black;\r\n}\r\n\r\n.player__info {\r\n  padding-top: 14px;\r\n  width: 270px;\r\n  height: 100%;\r\n  display: inline-block;\r\n  font-size: 20px;\r\n}\r\n.player__info__name {\r\n  position: relative;\r\n  width: 190px;\r\n  display: inline-block;\r\n  float: left;\r\n  text-align: right;\r\n  padding-right: 4px;\r\n  margin-bottom: 0px;\r\n}\r\n\r\n.player__info__score {\r\n  position: relative;\r\n  width: 80px;\r\n  display: inline-block;\r\n  padding-left: 4px;\r\n}\r\n\r\n.player__input {\r\n  background-color: rgba(255, 255, 255, 0.3);\r\n  color: #000;\r\n  width: 100%;\r\n  border: 0;\r\n}\r\n\r\n.player__input--name {\r\n  text-align: right;\r\n}\r\n\r\n.player__input--score {\r\n  text-align: left;\r\n}\r\n\r\n.player__remove {\r\n  cursor: pointer;\r\n  color: red;\r\n  position: absolute;\r\n  right: -20px;\r\n}\r\n", ""]);
+	exports.push([module.id, "html {\r\n  box-sizing: border-box;\r\n}\r\n*, *:before, *:after {\r\n  box-sizing: inherit;\r\n}\r\n\r\nbody {\r\n  background-color: #181818;\r\n  color: #fff;\r\n  font-family: 'Finger Paint', cursive;\r\n}\r\n\r\n.admin {\r\n  height: 260px;\r\n  width: 321px;\r\n  background-color: #505050;\r\n  margin: 0 auto;\r\n  border: solid 1px black;\r\n  text-align: center;\r\n  padding-bottom: 20px;\r\n  transition: all 0.5s;\r\n  overflow: hidden;\r\n}\r\n\r\n.admin--enter {\r\n  height: 0;\r\n  padding: 0;\r\n  border: 0;\r\n}\r\n\r\n.add-player__input {\r\n  color: #000;\r\n  width: 200px;\r\n}\r\n\r\n.add-player__btn {\r\n  color: #000;\r\n  display: block;\r\n  margin: 0 auto;\r\n  width: 200px;\r\n}\r\n\r\n.headline {\r\n  text-align: center;\r\n  color: #ed8888;\r\n  margin-top: 0;\r\n  margin-bottom: 4px;\r\n}\r\n\r\n.edit__btn {\r\n  display: block;\r\n  color: #000;\r\n  width: 200px;\r\n  margin: 10px auto 0 auto;\r\n}\r\n\r\n.login {\r\n  margin-top: 10px;\r\n  text-align: center;\r\n}\r\n\r\n.login__btn {\r\n  cursor: pointer;\r\n}\r\n\r\n.players {\r\n  width: 321px;\r\n  display: block;\r\n  position: relative;\r\n  margin: 0 auto;\r\n}\r\n\r\n.player {\r\n  height: 56px;\r\n  color: #fff;\r\n  text-shadow: 1px 1px 6px #000;\r\n  position: absolute;\r\n  transition: all 1.5s cubic-bezier(.87,-.41,.19,1.44);\r\n  border: solid 1px black;\r\n}\r\n\r\n.player--deathknight {\r\n  background-color: #C41F3B;\r\n}\r\n\r\n.player--druid {\r\n  background-color: #FF7D0A;\r\n}\r\n\r\n.player--hunter {\r\n  background-color: #ABD473;\r\n}\r\n\r\n.player--mage {\r\n  background-color: #69CCF0;\r\n}\r\n\r\n.player--monk {\r\n  background-color: #00FF96;\r\n}\r\n\r\n.player--paladin {\r\n  background-color: #F58CBA;\r\n}\r\n\r\n.player--priest {\r\n  color: #141414;\r\n  background-color: #FFFFFF;\r\n  text-shadow: 0 0 0;\r\n}\r\n\r\n.player--rogue {\r\n  background-color: #FFF569;\r\n}\r\n\r\n.player--shaman {\r\n  background-color: #0070DE;\r\n}\r\n\r\n.player--warlock {\r\n  background-color: #9482C9;\r\n}\r\n\r\n.player--warrior {\r\n  background-color: #C79C6E;\r\n}\r\n\r\n.player__thumbnail {\r\n  display: inline-block;\r\n  float: left;\r\n  margin-top: 4px;\r\n  margin-left: 3px;\r\n  width: 46px;\r\n  height: 46px;\r\n  border: solid 1px black;\r\n}\r\n\r\n.player__info {\r\n  padding-top: 14px;\r\n  width: 270px;\r\n  height: 100%;\r\n  display: inline-block;\r\n  font-size: 20px;\r\n}\r\n.player__info__name {\r\n  position: relative;\r\n  width: 190px;\r\n  display: inline-block;\r\n  float: left;\r\n  text-align: right;\r\n  padding-right: 4px;\r\n  margin-bottom: 0px;\r\n}\r\n\r\n.player__info__score {\r\n  position: relative;\r\n  width: 80px;\r\n  display: inline-block;\r\n  padding-left: 4px;\r\n}\r\n\r\n.player__input {\r\n  background-color: rgba(255, 255, 255, 0.3);\r\n  color: #000;\r\n  width: 100%;\r\n  border: 0;\r\n}\r\n\r\n.player__input--name {\r\n  text-align: right;\r\n}\r\n\r\n.player__input--score {\r\n  text-align: left;\r\n}\r\n\r\n.player__input--thumbnail {\r\n  position: absolute;\r\n  width: 280px;\r\n  top: 16px;\r\n  left: -300px;\r\n}\r\n\r\n.player__remove {\r\n  cursor: pointer;\r\n  color: red;\r\n  position: absolute;\r\n  right: -20px;\r\n}\r\n", ""]);
 
 	// exports
 
